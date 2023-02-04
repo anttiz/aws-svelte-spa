@@ -10,7 +10,7 @@
     CognitoUserPool,
     AuthenticationDetails,
   } from "amazon-cognito-identity-js";
-  import { token } from "../stores";
+  import { cognitoUser, token } from "../stores";
 
   let notificationMessage = "";
   const notify = (msg, delay = 2000) => {
@@ -41,8 +41,8 @@
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
         notify("logged in");
-        console.log("success", data);
         token.set(data.getAccessToken().getJwtToken());
+        cognitoUser.set(user);
       },
       onFailure: (err) => {
         notify(err.message);

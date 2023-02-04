@@ -1,9 +1,9 @@
 <script>
-  import { token } from "../stores";
+  import { cognitoUser, token } from "../stores";
 
 
   const onSignOutClick = async () => {
-    token.set('');
+    cognitoUser.set(undefined);
   };
 </script>
 
