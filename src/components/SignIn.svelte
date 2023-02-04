@@ -4,13 +4,14 @@
     CLIENT_ID,
     TODO_USERNAME,
     TODO_PASSWORD,
-  } from "../lib/auth";
+  } from "../utils/constants";
   import {
     CognitoUser,
     CognitoUserPool,
     AuthenticationDetails,
   } from "amazon-cognito-identity-js";
   import { cognitoUser, token } from "../stores";
+  import Button from "./Button.svelte";
 
   let notificationMessage = "";
   const notify = (msg, delay = 2000) => {
@@ -41,7 +42,9 @@
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
         notify("logged in");
-        token.set(data.getAccessToken().getJwtToken());
+        const tok = data.getIdToken();
+        console.log(tok)
+        token.set(data.getIdToken().getJwtToken());
         cognitoUser.set(user);
       },
       onFailure: (err) => {
@@ -57,7 +60,8 @@
 <form on:submit|preventDefault={onSignInSubmit}>
   <label for="username">Username</label>
   <input required type="text" id="username" value={TODO_USERNAME} />
-  <label for="password">password</label>
+  <label for="password">Password</label>
   <input type="password" id="password" value={TODO_PASSWORD} />
-  <button type="submit">sign in</button>
+  <Button type="submit" label="Sign in" />
+  <div>{notificationMessage}</div>
 </form>

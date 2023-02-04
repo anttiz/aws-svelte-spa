@@ -1,5 +1,6 @@
 <script>
   import { cognitoUser, token } from "../stores";
+  import Button from "./Button.svelte";
 
 
   const onSignOutClick = async () => {
@@ -7,4 +8,4 @@
   };
 </script>
 
-<button on:click={onSignOutClick}>Sign out</button>
+<Button color="bg-red-300" label="Sign out" on:click={onSignOutClick} />

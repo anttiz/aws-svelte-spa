@@ -2,7 +2,7 @@
   import {
     USER_POOL_ID,
     CLIENT_ID,
-  } from "../lib/auth";
+  } from "../utils/constants";
   import {
     CognitoUserPool,
     CognitoUserAttribute,
