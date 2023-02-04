@@ -42,8 +42,6 @@
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
         notify("logged in");
-        const tok = data.getIdToken();
-        console.log(tok)
         token.set(data.getIdToken().getJwtToken());
         cognitoUser.set(user);
       },
