@@ -1,8 +1,9 @@
 <script>
   import { stringify } from "postcss";
-import { token } from "../stores";
+  import { token } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
   import Button from "./Button.svelte";
+  import DeleteTodo from "./DeleteTodo.svelte";
 
   let currentToken = "";
   token.subscribe((value) => {
@@ -10,7 +11,7 @@ import { token } from "../stores";
   });
 
   /**
-   * @type {object[]}
+   * @type {{todoId: string, name: string}[]}
    */
   let todos = [];
   let error = "";
@@ -32,27 +33,26 @@ import { token } from "../stores";
 
 <div class="container mx-auto bg-slate-300 shadow border p-8">
   <Button on:click={getTodos} label="Fetch TODOS" />
-  <h2>TODOS {JSON.stringify(todos)}</h2>
   {#if error}
     <p>Error occured: {error}</p>
   {/if}
+  <p>Fetched {todos.length} items</p>
   {#if todos.length}
-    <p>Fetched {todos.length} items</p>
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th />
+      </thead>
+      <tbody>
+        {#each todos as { todoId, name }, i}
+          <tr>
+            <td>{todoId}</td>
+            <td>{name}</td>
+            <td><DeleteTodo {todoId} /></td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
   {/if}
-  <table>
-    <thead>
-      <th>Id</th>
-      <th>Name</th>
-      <th></th>
-    </thead>
-    <tbody>
-      {#each todos as { todoId, name }, i}
-      <tr>
-        <td>{todoId}</td>
-        <td>{i + 1}: {name}</td>
-        <td></td>
-      </tr>
-      {/each}
-    </tbody>
-  </table>
 </div>

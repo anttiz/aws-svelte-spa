@@ -8,4 +8,4 @@
   };
 </script>
 
-<Button color="bg-red-300" label="Sign out" on:click={onSignOutClick} />
+<Button color="red" label="Sign out" on:click={onSignOutClick} />
