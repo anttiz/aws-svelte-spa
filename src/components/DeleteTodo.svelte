@@ -1,5 +1,5 @@
 <script>
-  import { token } from "../stores";
+  import { apiData, todos, token } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
   import Button from "./Button.svelte";
 
@@ -12,20 +12,26 @@
     currentToken = value;
   });
 
+  /**
+   * @type {{"todoId": string, "name": string}[]}
+   */
+  let currentTodos = [];
+  todos.subscribe((value) => (currentTodos = value));
+
   async function deleteTodo() {
     try {
       error = "";
       const headers = {
-        Authorization: `Bearer ${currentToken}`
+        Authorization: `Bearer ${currentToken}`,
       };
       const response = await fetch(`${TODO_ENDPOINT}/delete`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers,
         body: JSON.stringify({
           todoId,
         }),
       });
-      console.log(response)
+      apiData.set(currentTodos.filter((t) => t.todoId !== todoId));
     } catch (e) {
       error = e;
     }
