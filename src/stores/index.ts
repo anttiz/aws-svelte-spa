@@ -8,7 +8,7 @@ type TodoItem = {
 
 export const token = writable("");
 
-export const cognitoUser = writable<CognitoUser | undefined>(undefined);
+export const cognitoUser = writable<CognitoUser | null>(null);
 
 export const apiData = writable<TodoItem[]>([]);
 

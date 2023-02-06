@@ -38,7 +38,7 @@
   }
 </script>
 
-<Button on:click={deleteTodo} label="Delete" color="red" />
+<Button on:click={deleteTodo} label="Delete" color="bg-red-300" />
 {#if error}
   <span>{error}</span>
 {/if}
