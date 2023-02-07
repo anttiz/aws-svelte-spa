@@ -1,7 +1,7 @@
 <script lang="ts">
   import { apiData, todos, token, type TodoItem } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
-  import Button from "./Button.svelte";
+  import InlineButton from "./InlineButton.svelte";
 
   export let todoId = "";
 
@@ -35,7 +35,7 @@
   }
 </script>
 
-<Button on:click={deleteTodo} label="Delete" color="bg-red-600" />
+<InlineButton on:click={deleteTodo} label="Delete" />
 {#if error}
   <span>{error}</span>
 {/if}

@@ -4,12 +4,11 @@
 
 <svelte:head>
   <title>SvelteKit - Cognito</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 </svelte:head>
 
-<main>
-  <div class="container mx-auto bg-gray-200 rounded-t-lg shadow border p-8 mt-10">
-    <p class="text-3xl text-gray-700 font-bold mb-5">Welcome!</p>
-    <p class="text-gray-500 text-lg">AWS TODO SPA</p>
-  </div>
+<main class="container">
+  <h1>Welcome!</h1>
+  <h3>AWS TODO SPA</h3>
   <slot />
 </main>

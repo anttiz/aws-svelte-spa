@@ -59,7 +59,7 @@
   };
 </script>
 
-<div class="container mx-auto bg-slate-300 shadow border p-8">
+<div>
   {#if error}
     <p>Error occured: {error}</p>
   {/if}
@@ -74,18 +74,18 @@
       visible = false;
     }}
   />
-  <table class="table-auto border border-spacing-1">
+  <table>
     <thead>
-      <th class="border border-spacing-1">Id</th>
-      <th class="border border-spacing-1">Name</th>
-      <th class="border border-spacing-1" />
+      <th>Id</th>
+      <th>Name</th>
+      <th />
     </thead>
     <tbody>
       {#each currentTodos as { todoId, name }, i}
         <tr>
-          <td class="border border-spacing-1">{todoId}</td>
-          <td class="border border-spacing-1">{name}</td>
-          <td class="border border-spacing-1"><DeleteTodo {todoId} /></td>
+          <td>{todoId}</td>
+          <td>{name}</td>
+          <td><DeleteTodo {todoId} /></td>
         </tr>
       {/each}
     </tbody>

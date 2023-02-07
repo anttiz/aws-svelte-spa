@@ -62,10 +62,14 @@
 </script>
 
 <form on:submit|preventDefault={onSignInSubmit}>
-  <label for="username">Username</label>
-  <input required type="text" id="username" value={TODO_USERNAME} />
-  <label for="password">Password</label>
-  <input type="password" id="password" value={TODO_PASSWORD} />
-  <Button type="submit" label="Sign in" />
+  <label for="username"
+    >Username
+    <input required type="text" id="username" value={TODO_USERNAME} />
+  </label>
+  <label for="password"
+    >Password
+    <input type="password" id="password" value={TODO_PASSWORD} />
+  </label>
+  <Button label="Sign in" type="submit" />
   <div>{notificationMessage}</div>
 </form>

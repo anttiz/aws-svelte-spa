@@ -16,13 +16,17 @@
   cognitoUser.subscribe((value) => (user = value));
 </script>
 
-<div class="container mx-auto bg-slate-300 shadow border p-8">
-  {#if user}
+<div class="grid">
+  <div>
+    {#if user}
     <SignOut />
   {:else}
     <Signin />
   {/if}
+  </div>
+  <div>
+    {#if user}
+    <Todos />
+  {/if}
+  </div>
 </div>
-{#if user}
-  <Todos />
-{/if}

@@ -2,6 +2,7 @@
   import { getCurrentUser } from "../lib/auth";
   import { cognitoUser } from "../stores";
   import Button from "./Button.svelte";
+  import InlineButton from "./InlineButton.svelte";
 
   const onSignOutClick = async () => {
     const current = getCurrentUser();
@@ -12,4 +13,4 @@
   };
 </script>
 
-<Button color="bg-red-600" label="Sign out" on:click={onSignOutClick} />
+<InlineButton label="Sign out" on:click={onSignOutClick} />
