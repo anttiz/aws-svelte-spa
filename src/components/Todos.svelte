@@ -2,9 +2,9 @@
   import { onMount } from "svelte";
   import { apiData, todos, token } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
+  import AddModal from "./AddModal.svelte";
   import Button from "./Button.svelte";
   import DeleteTodo from "./DeleteTodo.svelte";
-  import Modal from "./Modal.svelte";
 
   let currentToken = "";
   token.subscribe((value) => {
@@ -36,19 +36,47 @@
   });
 
   let visible = false;
-  const addTodo = () => {
+  const openModal = () => {
     visible = true;
-  }
+  };
+
+  const addTodo = async (name) => {
+    try {
+      error = "";
+      const headers = {
+        Authorization: `Bearer ${currentToken}`,
+      };
+      const response = await fetch(`${TODO_ENDPOINT}/create`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          name,
+        }),
+      });
+      const data = await response.json();
+      console.log(currentTodos, data)
+      apiData.set([...currentTodos, data]);
+    } catch (e) {
+      error = e;
+    }
+  };
 </script>
 
 <div class="container mx-auto bg-slate-300 shadow border p-8">
   {#if error}
     <p>Error occured: {error}</p>
   {/if}
-  <Button on:click={addTodo} label="Add" />
-  <Modal visible={visible} onClose={() => {
-    visible = false;
-  }} />
+  <Button on:click={openModal} label="Add" />
+  <AddModal
+    {visible}
+    onCancel={() => {
+      visible = false;
+    }}
+    onAdd={({ name }) => {
+      addTodo(name);
+      visible = false;
+    }}
+  />
   <table class="table-auto border border-spacing-1">
     <thead>
       <th class="border border-spacing-1">Id</th>
