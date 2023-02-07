@@ -1,12 +1,9 @@
-<script>
+<script lang="ts">
   export let label = "";
   export let color = "bg-green-600";
   export let textColor = "text-white";
   export let borderColor = "border-transparent";
-  /**
-   * @type {"button" | "submit" | "reset" | null | undefined}
-   */
-  export let type = "button";
+  export let type:"button" | "submit" | "reset" | null | undefined = "button";
 </script>
 
 <button

@@ -1,5 +1,5 @@
-<script>
-  import { apiData, todos, token } from "../stores";
+<script lang="ts">
+  import { apiData, todos, token, type TodoItem } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
   import Button from "./Button.svelte";
 
@@ -12,10 +12,7 @@
     currentToken = value;
   });
 
-  /**
-   * @type {{"todoId": string, "name": string}[]}
-   */
-  let currentTodos = [];
+  let currentTodos:TodoItem[] = [];
   todos.subscribe((value) => (currentTodos = value));
 
   async function deleteTodo() {
@@ -33,7 +30,7 @@
       });
       apiData.set(currentTodos.filter((t) => t.todoId !== todoId));
     } catch (e) {
-      error = e;
+      error = e as string;
     }
   }
 </script>

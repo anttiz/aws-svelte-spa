@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { getCurrentUser } from "../lib/auth";
   import { cognitoUser } from "../stores";
   import Button from "./Button.svelte";

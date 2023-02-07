@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     USER_POOL_ID,
     CLIENT_ID,
@@ -14,7 +14,7 @@
   import Button from "./Button.svelte";
 
   let notificationMessage = "";
-  const notify = (msg, delay = 2000) => {
+  const notify = (msg: string, delay = 2000) => {
     notificationMessage = msg;
     setTimeout(() => {
       notificationMessage = "";
@@ -25,10 +25,16 @@
     ClientId: CLIENT_ID,
   });
 
-  const onSignInSubmit = async (e) => {
+  const onSignInSubmit = async ({
+    currentTarget,
+  }: {
+    currentTarget: EventTarget;
+  }) => {
     const [username, password] = [
-      e.currentTarget.username.value,
-      e.currentTarget.password.value,
+      // @ts-ignore
+      currentTarget.username?.value,
+      // @ts-ignore
+      currentTarget.password?.value,
     ];
     const user = new CognitoUser({
       Username: username,

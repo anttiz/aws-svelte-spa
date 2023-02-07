@@ -1,17 +1,9 @@
-<script>
+<script lang="ts">
   import Button from "./Button.svelte";
   import Modal from "./Modal.svelte";
 
-  /**
-   * @type {() => void}
-   */
-  export let onCancel;
-
-  /**
-   * @type {({ name }: {name: string}) => void}
-   */
-  export let onAdd;
-
+  export let onCancel: () => void;
+  export let onAdd: ({ name }: { name: string }) => void;
   export let visible = false;
 
   let name = "";

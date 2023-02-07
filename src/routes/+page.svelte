@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import type { CognitoUser } from "amazon-cognito-identity-js";
   import { onMount } from "svelte";
   import Signin from "../components/SignIn.svelte";
   import SignOut from "../components/SignOut.svelte";
@@ -6,16 +7,13 @@
   import { checkCurrentUser } from "../lib/auth";
   import { cognitoUser } from "../stores";
 
-  /**
-   * @type {import("amazon-cognito-identity-js").CognitoUser | null}
-   */
-  let user;
+  let user: CognitoUser | null;
 
   onMount(async function () {
     checkCurrentUser();
   });
 
-  cognitoUser.subscribe((value) => user = value);
+  cognitoUser.subscribe((value) => (user = value));
 </script>
 
 <div class="container mx-auto bg-slate-300 shadow border p-8">

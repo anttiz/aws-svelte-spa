@@ -1,7 +1,7 @@
 import type { CognitoUser } from "amazon-cognito-identity-js";
 import { derived, writable } from "svelte/store";
 
-type TodoItem = {
+export type TodoItem = {
   todoId: string;
   name: string;
 }

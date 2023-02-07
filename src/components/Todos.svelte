@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
-  import { apiData, todos, token } from "../stores";
+  import { apiData, todos, token, type TodoItem } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
   import AddModal from "./AddModal.svelte";
   import Button from "./Button.svelte";
@@ -13,10 +13,7 @@
 
   let error = "";
 
-  /**
-   * @type {{"todoId": string, "name": string}[]}
-   */
-  let currentTodos = [];
+  let currentTodos:TodoItem[] = [];
   todos.subscribe((value) => (currentTodos = value));
 
   onMount(async function () {
@@ -31,7 +28,7 @@
       const data = await response.json();
       apiData.set(data);
     } catch (e) {
-      error = e;
+      error = e as string;
     }
   });
 
@@ -40,7 +37,7 @@
     visible = true;
   };
 
-  const addTodo = async (name) => {
+  const addTodo = async (name: string) => {
     try {
       error = "";
       const headers = {
@@ -57,7 +54,7 @@
       console.log(currentTodos, data)
       apiData.set([...currentTodos, data]);
     } catch (e) {
-      error = e;
+      error = e as string;
     }
   };
 </script>
