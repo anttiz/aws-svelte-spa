@@ -8,7 +8,5 @@
 </svelte:head>
 
 <main class="container">
-  <h1>Welcome!</h1>
-  <h3>AWS TODO SPA</h3>
   <slot />
 </main>

@@ -16,17 +16,27 @@
   cognitoUser.subscribe((value) => (user = value));
 </script>
 
+<nav>
+  <ul>
+    <li><strong>AWS TODO spa</strong></li>
+  </ul>
+  <ul>
+    <!-- <li><a href="#">Link</a></li> -->
+    {#if user}
+      <li><SignOut /></li>
+    {/if}
+  </ul>
+</nav>
 <div class="grid">
-  <div>
-    {#if user}
-    <SignOut />
+  {#if !user}
+    <article>
+      <Signin />
+    </article>
   {:else}
-    <Signin />
+    <article>
+      {#if user}
+        <Todos />
+      {/if}
+    </article>
   {/if}
-  </div>
-  <div>
-    {#if user}
-    <Todos />
-  {/if}
-  </div>
 </div>
