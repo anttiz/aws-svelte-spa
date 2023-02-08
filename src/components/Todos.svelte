@@ -51,7 +51,6 @@
         }),
       });
       const data = await response.json();
-      console.log(currentTodos, data)
       apiData.set([...currentTodos, data]);
     } catch (e) {
       error = e as string;
