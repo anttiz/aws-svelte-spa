@@ -3,8 +3,8 @@
   import { apiData, todos, token, type TodoItem } from "../stores";
   import { TODO_ENDPOINT } from "../utils/constants";
   import AddModal from "./AddModal.svelte";
-  import Button from "./Button.svelte";
   import DeleteTodo from "./DeleteTodo.svelte";
+  import InlineButton from "./InlineButton.svelte";
 
   let currentToken = "";
   token.subscribe((value) => {
@@ -62,7 +62,7 @@
   {#if error}
     <p>Error occured: {error}</p>
   {/if}
-  <Button on:click={openModal} label="Add" />
+  <InlineButton on:click={openModal} label="Add new TODO" />
   <AddModal
     {visible}
     onCancel={() => {
@@ -73,7 +73,7 @@
       visible = false;
     }}
   />
-  <table>
+  <table role="grid">
     <thead>
       <th>Id</th>
       <th>Name</th>

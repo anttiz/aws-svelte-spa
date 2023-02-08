@@ -18,7 +18,7 @@
 
 <nav>
   <ul>
-    <li><strong>AWS TODO spa</strong></li>
+    <li class="animate__animated animate__backInLeft"><strong>AWS TODO spa</strong></li>
   </ul>
   <ul>
     <!-- <li><a href="#">Link</a></li> -->
