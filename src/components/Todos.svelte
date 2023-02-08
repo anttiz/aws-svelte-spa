@@ -5,6 +5,7 @@
   import AddModal from "./AddModal.svelte";
   import DeleteTodo from "./DeleteTodo.svelte";
   import InlineButton from "./InlineButton.svelte";
+  import UpdateModal from "./UpdateModal.svelte";
 
   let currentToken = "";
   token.subscribe((value) => {
@@ -13,7 +14,7 @@
 
   let error = "";
 
-  let currentTodos:TodoItem[] = [];
+  let currentTodos: TodoItem[] = [];
   todos.subscribe((value) => (currentTodos = value));
 
   onMount(async function () {
@@ -35,6 +36,13 @@
   let visible = false;
   const openModal = () => {
     visible = true;
+  };
+
+  let updateVisible = false;
+  let currentItem: TodoItem | undefined = undefined;
+  const openUpdateModal = (todoId: string) => {
+    currentItem = currentTodos.find((todo) => todo.todoId === todoId);
+    updateVisible = true;
   };
 
   const addTodo = async (name: string) => {
@@ -73,6 +81,22 @@
       visible = false;
     }}
   />
+  {#if currentItem}
+  <UpdateModal
+    visible={updateVisible}
+    item={currentItem}
+    onCancel={() => {
+      updateVisible = false;
+    }}
+    onUpdate={(item) => {
+      console.log('updated item', item)
+      if (currentItem) {
+        currentItem.name = item.name;
+      }
+      updateVisible = false;
+    }}
+  />
+  {/if}
   <table role="grid">
     <thead>
       <th>Id</th>
@@ -84,7 +108,14 @@
         <tr>
           <td>{todoId}</td>
           <td>{name}</td>
-          <td><DeleteTodo {todoId} /></td>
+          <td
+            ><InlineButton
+              on:click={() => openUpdateModal(todoId)}
+              label="Update TODO"
+              className="secondary"
+            />
+            <DeleteTodo {todoId} /></td
+          >
         </tr>
       {/each}
     </tbody>

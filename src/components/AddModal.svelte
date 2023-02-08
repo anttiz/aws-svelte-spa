@@ -19,13 +19,11 @@
     </form>
     <footer>
       <InlineButton
-        href="#cancel"
         className="secondary"
         label="Cancel"
         on:click={() => onCancel()}
       />
       <InlineButton
-        href="#add"
         label="Add"
         on:click={() =>
           onAdd({
