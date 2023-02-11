@@ -35,7 +35,7 @@
   }
 </script>
 
-<InlineButton on:click={deleteTodo} label="Delete" className="secondary"/>
+<InlineButton on:click={deleteTodo} label="Delete" className="primary"/>
 {#if error}
   <span>{error}</span>
 {/if}

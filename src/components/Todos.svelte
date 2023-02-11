@@ -111,8 +111,8 @@
           <td
             ><InlineButton
               on:click={() => openUpdateModal(todoId)}
-              label="Update TODO"
-              className="secondary"
+              label="Update"
+              className="primary"
             />
             <DeleteTodo {todoId} /></td
           >
